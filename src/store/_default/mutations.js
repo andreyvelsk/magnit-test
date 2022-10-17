@@ -3,6 +3,10 @@ export const loadMore = (state, payload) => {
     state.list[item.id] = item;
   }
 };
+export const loadSingle = (state, payload) => {
+  const { id } = payload;
+  state.list[id] = payload;
+};
 
 export const loadCurrent = (state, payload) => {
   state.current = payload;

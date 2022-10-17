@@ -37,6 +37,7 @@
 <script>
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
   setup() {
     const breadcrumbs = [
@@ -49,12 +50,13 @@ export default {
     const store = useStore();
     const isNew = !route.params.id;
     const routePrefix = isNew ? "create" : "edit";
+    const taskList = computed(() => store.getters["tasks/getList"]);
 
     const loadCurrent = () => {
       const taskId = route.params.id;
-      const taskList = store.getters["tasks/getList"];
-      if (taskId && taskList[taskId]) {
-        store.commit("tasks/loadCurrent", taskList[taskId]);
+      if (taskId && taskList.value[taskId]) {
+        const task = JSON.parse(JSON.stringify(taskList.value[taskId]));
+        store.commit("tasks/loadCurrent", task);
       } else {
         store.commit("tasks/loadCurrent", {
           documents: [],
@@ -66,7 +68,20 @@ export default {
     loadCurrent();
 
     const onBtnSave = () => {
-      console.log("save");
+      let task = store.getters["tasks/getCurrent"];
+      //generate mock id
+      if (isNew) {
+        const id = Object.keys(taskList.value).length + 1;
+        task = {
+          ...task,
+          id,
+        };
+      }
+      store.commit("tasks/loadSingle", task);
+      localStorage.setItem(
+        "tasks",
+        JSON.stringify(Object.values(taskList.value))
+      );
     };
 
     return {

@@ -10,8 +10,14 @@ export default {
   setup() {
     const store = useStore();
 
-    // generate initial mock data
-    const tasks = generateTasksList();
+    let tasks = localStorage.getItem("tasks");
+
+    try {
+      if (!tasks) tasks = generateTasksList();
+      else tasks = JSON.parse(tasks);
+    } catch {
+      tasks = generateTasksList();
+    }
     store.commit("tasks/loadMore", tasks);
   },
 };
