@@ -1,4 +1,7 @@
 export default {
-  current: {},
+  current: {
+    comments: [],
+    documents: [],
+  },
   list: {},
 };

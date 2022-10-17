@@ -4,9 +4,9 @@ import { getCurrentInstance, computed } from "vue";
 export const getCurrentValue = (store, name) => {
   const $store = useStore();
 
-  const current = $store.getters[`${store}/getCurrent`];
   return computed({
     get() {
+      const current = $store.getters[`${store}/getCurrent`];
       return current[name];
     },
     set(value) {
