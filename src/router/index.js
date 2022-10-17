@@ -21,7 +21,7 @@ const routes = [
       {
         path: "documents",
         name: "create.documents",
-        component: () => import("@/views/Form/DocumentsForm.vue"),
+        component: () => import("@/views/Form/documents/DocumentsForm.vue"),
         meta: { nextRoute: "create.comments" },
       },
       {
@@ -45,7 +45,7 @@ const routes = [
       {
         path: "documents",
         name: "edit.documents",
-        component: () => import("@/views/Form/DocumentsForm.vue"),
+        component: () => import("@/views/Form/documents/DocumentsForm.vue"),
         meta: { nextRoute: "edit.comments" },
       },
       {
