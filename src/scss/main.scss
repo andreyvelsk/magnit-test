@@ -19,6 +19,10 @@ body {
 
 a {
     text-decoration: none;
+    &.disabled {
+        pointer-events: none;
+        opacity: .2;
+    }
 }
 
 .container {

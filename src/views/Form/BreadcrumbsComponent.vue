@@ -9,6 +9,7 @@
         }"
         :key="'breadcrumbs' + index"
         class="breadcrumbs-item"
+        :class="{ disabled: !isRequiredFieldsFilled }"
       >
         {{ index + 1 }}. {{ breadcrumb.label }}
       </router-link>
@@ -18,6 +19,7 @@
 
 <script>
 import { useRoute } from "vue-router";
+import { isRequiredFieldsFilled } from "./index";
 export default {
   setup() {
     const breadcrumbs = [
@@ -33,6 +35,7 @@ export default {
       breadcrumbs,
       route,
       routePrefix,
+      isRequiredFieldsFilled,
     };
   },
 };

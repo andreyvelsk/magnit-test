@@ -15,6 +15,7 @@
       <router-link
         v-if="route.meta.nextRoute"
         class="btn btn-white"
+        :class="{ disabled: !isRequiredFieldsFilled }"
         :to="{ name: route.meta.nextRoute, params: { id: route.params.id } }"
       >
         Далее
@@ -25,6 +26,7 @@
       <router-link
         :to="{ name: 'list' }"
         class="btn btn-white"
+        :class="{ disabled: !isRequiredFieldsFilled }"
         @click="onBtnSave"
       >
         Сохранить
@@ -40,6 +42,7 @@
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { isRequiredFieldsFilled } from "./index";
 export default {
   setup() {
     const route = useRoute();
@@ -68,6 +71,7 @@ export default {
     return {
       route,
       onBtnSave,
+      isRequiredFieldsFilled,
     };
   },
 };
