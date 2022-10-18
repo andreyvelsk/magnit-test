@@ -1,0 +1,70 @@
+input, button, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: $bold;
+    color: $dark;
+    text-align: center;
+    vertical-align: middle;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1rem;
+    border-radius: $border-radius;
+
+    @each $color, $value in $theme-colors {
+        &-#{$color} { 
+            background-color: $value;
+            color: $white;
+            border: none;
+            &:hover {
+                background-color: darken($value, 5%);
+            }
+        }
+    }
+
+    &-white {
+        color: $dark;
+    }
+}
+
+.text {
+    @each $color, $value in $theme-colors {
+        &-#{$color} { 
+            color: $value;
+            &:hover {
+                color: darken($value, 5%);
+            }
+        }
+    }
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    color: $dark;
+    background-color: $white;
+    background-clip: padding-box;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    &:focus {
+        border-color: $primary;
+        outline: 0;
+        box-shadow: none;
+    }
+}
+
+hr {
+    margin: 30px 0;
+    border: 1px solid $border-color;
+}

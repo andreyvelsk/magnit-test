@@ -1,13 +1,27 @@
 <template>
-  <draggable-documents />
-  <documents-picker />
   <div class="documents">
-    <div
-      class="document"
-      v-for="document in documents"
-      :key="'document' + document.id"
-    >
-      {{ document }}
+    <div class="documents-column">
+      <draggable-documents />
+      <documents-picker />
+    </div>
+    <div class="documents-column">
+      <table v-if="documents.length" class="table">
+        <thead>
+          <tr>
+            <th>Название</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="document in documents" :key="'document' + document.id">
+            <td>
+              {{ document.name }}
+            </td>
+            <td class="table-actions">
+              <i class="fas fa-trash"> </i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -34,4 +48,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.documents {
+  display: flex;
+  margin: 0 -25px;
+  &-column {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 25px;
+  }
+  &-table td {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+</style>

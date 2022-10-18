@@ -2,7 +2,7 @@
   <label v-if="label" :for="'#' + id">
     {{ label }}
   </label>
-  <textarea :id="id" v-model="value" />
+  <textarea :id="id" v-model="value" class="form-control" :rows="rows" />
 </template>
 
 <script>
@@ -20,6 +20,10 @@ export default {
     label: {
       type: String,
     },
+    rows: {
+      type: Number,
+      default: 5,
+    },
   },
 
   setup(props) {
@@ -31,4 +35,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+textarea {
+  resize: none;
+}
+</style>

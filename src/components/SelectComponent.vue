@@ -2,7 +2,7 @@
   <label v-if="label" :for="'#' + id">
     {{ label }}
   </label>
-  <select :id="id" v-model="value">
+  <select :id="id" v-model="value" class="form-control">
     <option v-for="(item, key) in source" :key="name + key" :value="key">
       {{ item }}
     </option>

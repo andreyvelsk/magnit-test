@@ -2,7 +2,7 @@
   <label v-if="label" :for="'#' + id">
     {{ label }}
   </label>
-  <input :type="type" :id="id" v-model="value" />
+  <input :type="type" :id="id" v-model="value" class="form-control" />
 </template>
 
 <script>

@@ -1,4 +1,7 @@
 @import './variables.scss';
+@import './controls.scss';
+
+@import url('http://fonts.cdnfonts.com/css/geometria');
 
 html {
     font-size: 14px;
@@ -6,4 +9,52 @@ html {
 body {
     margin: 0;
     color: $dark;
+    background-color: $white;
+    font-family: 'Geometria', sans-serif;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.table {
+    border-spacing: 0 6px;
+    width: 100%;
+    thead {
+        th {
+            text-align: start;
+            padding-left: 40px;
+        }
+    }
+    tbody {
+      tr {
+        background-color: $secondary;
+
+        td {
+          padding: 25px 33px;
+          &.table-actions {
+            text-align: end;
+            .fa-pen {
+                margin-right: 42px;
+              }
+          }
+          
+        }
+      }
+    }
+  }

@@ -1,5 +1,16 @@
 <template>
-  <input type="file" @change="addFiles" ref="file" multiple />
+  <div class="picker">
+    <div class="form-control picker-input">Выбрать файл...</div>
+    <label for="file-upload" class="btn btn-primary"> Выбрать </label>
+    <input
+      id="file-upload"
+      type="file"
+      @change="addFiles"
+      ref="file"
+      multiple
+      hidden
+    />
+  </div>
 </template>
 
 <script>
@@ -28,5 +39,13 @@ export default {
   },
 };
 </script>
-
-<style></style>
+<style lang="scss" scoped>
+.picker {
+  display: flex;
+  &-input {
+    flex-grow: 1;
+    color: #9fa2a5;
+    margin-right: 4px;
+  }
+}
+</style>
