@@ -9,7 +9,10 @@
         }"
         :key="'breadcrumbs' + index"
         class="breadcrumbs-item"
-        :class="{ disabled: !isRequiredFieldsFilled }"
+        :class="{
+          disabled: !isRequiredFieldsFilled,
+          'breadcrumbs-item_filled': breadcrumb.is_filled,
+        }"
       >
         {{ index + 1 }}. {{ breadcrumb.label }}
       </router-link>
@@ -19,17 +22,36 @@
 
 <script>
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 import { isRequiredFieldsFilled } from "./index";
+import { computed } from "vue";
 export default {
   setup() {
-    const breadcrumbs = [
-      { name: "index", label: "Основные настройки" },
-      { name: "documents", label: "Документы" },
-      { name: "comments", label: "Комментарии" },
-    ];
     const route = useRoute();
+    const store = useStore();
+    const taskCurrent = computed(() => store.getters["tasks/getCurrent"]);
     const isNew = !route.params.id;
     const routePrefix = isNew ? "create" : "edit";
+
+    const breadcrumbs = computed(() => [
+      {
+        name: "index",
+        label: "Основные настройки",
+        is_filled: isRequiredFieldsFilled.value,
+      },
+      {
+        name: "documents",
+        label: "Документы",
+        is_filled:
+          taskCurrent.value.documents && taskCurrent.value.documents.length,
+      },
+      {
+        name: "comments",
+        label: "Комментарии",
+        is_filled:
+          taskCurrent.value.comments && taskCurrent.value.comments.length,
+      },
+    ]);
 
     return {
       breadcrumbs,
@@ -59,7 +81,7 @@ export default {
     &:not(:last-child) {
       margin-right: 10px;
     }
-    &_active {
+    &.router-link-exact-active {
       background-color: #0c2747;
       color: $white;
     }
