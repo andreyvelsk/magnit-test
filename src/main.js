@@ -1,14 +1,12 @@
 import { createApp } from "vue";
-import { createStore } from "vuex";
 import App from "./App.vue";
-import Store from "@/store";
+import store from "@/store";
 import router from "./router";
-
-// Create a new store instance.
-const store = createStore(Store);
+import * as ConfirmDialog from "vuejs-confirm-dialog";
 
 const app = createApp(App);
 app.use(store);
 app.use(router);
+app.use(ConfirmDialog);
 
 app.mount("#app");

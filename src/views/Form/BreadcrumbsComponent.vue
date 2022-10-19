@@ -23,7 +23,7 @@
 <script>
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { isRequiredFieldsFilled } from "./index";
+import { isRequiredFieldsFilled } from "@/views/index";
 import { computed } from "vue";
 export default {
   setup() {

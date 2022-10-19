@@ -42,7 +42,7 @@
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { computed } from "vue";
-import { isRequiredFieldsFilled } from "./index";
+import { isRequiredFieldsFilled, saveToLS } from "@/views/index";
 export default {
   setup() {
     const route = useRoute();
@@ -62,10 +62,7 @@ export default {
         };
       }
       store.commit("tasks/loadSingle", task);
-      localStorage.setItem(
-        "tasks",
-        JSON.stringify(Object.values(taskList.value))
-      );
+      saveToLS();
     };
 
     return {

@@ -28,7 +28,7 @@
               class="fas fa-pen text-dark"
               :to="{ name: 'edit.index', params: { id: task.id } }"
             ></router-link>
-            <i class="fas fa-trash"></i>
+            <i class="fas fa-trash" @click="onBtnDeleteClick(task)"></i>
           </td>
         </tr>
       </tbody>
@@ -39,14 +39,24 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { onModalConfirm } from "@/components/modal";
+import { saveToLS } from "@/views/index";
 
 export default {
   setup() {
     const store = useStore();
 
+    const onBtnDeleteClick = (task) => {
+      onModalConfirm().then(() => {
+        store.commit("tasks/deleteFromList", { id: task.id });
+        saveToLS();
+      });
+    };
+
     return {
       // access a state in computed function
       tasksList: computed(() => store.getters["tasks/getList"]),
+      onBtnDeleteClick,
     };
   },
 };

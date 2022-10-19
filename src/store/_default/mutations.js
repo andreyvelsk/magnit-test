@@ -16,3 +16,8 @@ export const updateCurrent = (state, payload) => {
   const { key, value } = payload;
   state.current[key] = value;
 };
+
+export const deleteFromList = (state, payload) => {
+  const { id } = payload;
+  if (state.list[id]) delete state.list[id];
+};

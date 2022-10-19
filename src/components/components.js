@@ -1,16 +1,14 @@
-import { useStore } from "vuex";
+import store from "@/store";
 import { getCurrentInstance, computed } from "vue";
 
-export const getCurrentValue = (store, name) => {
-  const $store = useStore();
-
+export const getCurrentValue = (storeName, name) => {
   return computed({
     get() {
-      const current = $store.getters[`${store}/getCurrent`];
+      const current = store.getters[`${storeName}/getCurrent`];
       return current[name];
     },
     set(value) {
-      $store.commit(`${store}/updateCurrent`, {
+      store.commit(`${storeName}/updateCurrent`, {
         key: name,
         value,
       });

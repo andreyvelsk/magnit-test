@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <router-view />
+
+    <!-- vuejs-confirm-dialog -->
+    <dialogs-wrapper />
   </div>
 </template>
 
