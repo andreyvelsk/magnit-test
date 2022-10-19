@@ -13,7 +13,10 @@
             </div>
             <div class="comment-footer">
               <div class="comment-actions">
-                <i class="fas fa-pen"></i>
+                <i
+                  class="fas fa-pen cursor-pointer"
+                  @click="setEditableComment(comment)"
+                ></i>
                 <i
                   class="fas fa-trash cursor-pointer"
                   @click="onBtnDeleteClick(comment)"
@@ -66,18 +69,34 @@ export default {
     const current = computed(() => store.getters["tasks/comments/getCurrent"]);
 
     const addComment = () => {
-      //generate mock id
-      const id = `${tasksCurrent.value.id}-${Object.keys(comments).length + 1}`;
+      //edit comment
+      if (current.value.id) {
+        store.commit("tasks/editComment", {
+          comment: current.value.comment,
+          id: current.value.id,
+          date: new Date().toString(),
+        });
+      }
+      //create new one
+      else {
+        //generate mock id
+        const id = `${tasksCurrent.value.id}-${
+          Object.keys(comments).length + 1
+        }`;
 
-      store.commit("tasks/addComment", {
-        comment: current.value.comment,
-        id,
-        date: new Date().toString(),
-      });
+        store.commit("tasks/addComment", {
+          comment: current.value.comment,
+          id,
+          date: new Date().toString(),
+        });
+      }
 
       store.commit("tasks/comments/loadCurrent", {
         comment: null,
       });
+    };
+    const setEditableComment = (comment) => {
+      store.commit("tasks/comments/loadCurrent", { ...comment });
     };
 
     const formatStringToDate = (date) => {
@@ -111,6 +130,7 @@ export default {
       formatDate,
       formatTime,
       onBtnDeleteClick,
+      setEditableComment,
     };
   },
 };

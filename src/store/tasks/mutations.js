@@ -22,8 +22,10 @@ export const deleteDocument = (state, payload) => {
 };
 
 export const editComment = (state, payload) => {
-  const { id, comment } = payload;
+  const { id } = payload;
   const { comments } = state.current;
   const index = comments.findIndex((item) => item.id == id);
-  comments[index] == comment;
+  if (index > -1) {
+    comments[index] = payload;
+  }
 };
