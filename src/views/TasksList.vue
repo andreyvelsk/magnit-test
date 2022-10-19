@@ -28,7 +28,10 @@
               class="fas fa-pen text-dark"
               :to="{ name: 'edit.index', params: { id: task.id } }"
             ></router-link>
-            <i class="fas fa-trash" @click="onBtnDeleteClick(task)"></i>
+            <i
+              class="fas fa-trash cursor-pointer"
+              @click="onBtnDeleteClick(task)"
+            ></i>
           </td>
         </tr>
       </tbody>

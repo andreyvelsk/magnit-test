@@ -17,7 +17,11 @@
               {{ document.name }}
             </td>
             <td class="table-actions">
-              <i class="fas fa-trash"> </i>
+              <i
+                class="fas fa-trash cursor-pointer"
+                @click="onBtnDeleteClick(document)"
+              >
+              </i>
             </td>
           </tr>
         </tbody>
@@ -31,6 +35,7 @@ import DraggableDocuments from "./DraggableDocuments.vue";
 import DocumentsPicker from "./DocumentsPicker.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { onModalConfirm } from "@/components/modal";
 export default {
   components: {
     DraggableDocuments,
@@ -41,8 +46,15 @@ export default {
     const tasksCurrent = computed(() => store.getters["tasks/getCurrent"]);
     const documents = tasksCurrent.value.documents;
 
+    const onBtnDeleteClick = (document) => {
+      onModalConfirm().then(() => {
+        store.commit("tasks/deleteDocument", { id: document.id });
+      });
+    };
+
     return {
       documents,
+      onBtnDeleteClick,
     };
   },
 };

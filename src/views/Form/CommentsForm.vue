@@ -14,7 +14,10 @@
             <div class="comment-footer">
               <div class="comment-actions">
                 <i class="fas fa-pen"></i>
-                <i class="fas fa-trash"></i>
+                <i
+                  class="fas fa-trash cursor-pointer"
+                  @click="onBtnDeleteClick(comment)"
+                ></i>
               </div>
               <div class="comment-datetime">
                 <div class="comment-date">
@@ -49,6 +52,7 @@
 import TextareaComponent from "@/components/TextareaComponent.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { onModalConfirm } from "@/components/modal";
 export default {
   components: {
     TextareaComponent,
@@ -95,11 +99,18 @@ export default {
       return dateParsed.toLocaleTimeString("default");
     };
 
+    const onBtnDeleteClick = (document) => {
+      onModalConfirm().then(() => {
+        store.commit("tasks/deleteComment", { id: document.id });
+      });
+    };
+
     return {
       addComment,
       comments,
       formatDate,
       formatTime,
+      onBtnDeleteClick,
     };
   },
 };
