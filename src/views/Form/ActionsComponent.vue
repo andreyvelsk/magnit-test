@@ -9,6 +9,7 @@
           params: { id: route.params.id },
         }"
       >
+        <i class="fas fa-arrow-left"></i>
         Назад
       </router-link>
 
@@ -18,6 +19,7 @@
         :class="{ disabled: !isRequiredFieldsFilled }"
         :to="{ name: route.meta.nextRoute, params: { id: route.params.id } }"
       >
+        <i class="fas fa-arrow-right"></i>
         Далее
       </router-link>
     </div>
@@ -29,9 +31,11 @@
         :class="{ disabled: !isRequiredFieldsFilled }"
         @click="onBtnSave"
       >
+        <i class="fas fa-check"></i>
         Сохранить
       </router-link>
       <router-link class="btn btn-white" :to="{ name: 'list' }">
+        <i class="fas fa-ban"></i>
         Отмена
       </router-link>
     </div>
@@ -88,12 +92,19 @@ export default {
   &-buttons {
     &:first-child {
       padding-right: 20px;
-      border-right: 1px solid #bbc0c5;
+      border-right: 1px solid $gray-blue;
       margin-right: 30px;
     }
     .btn {
       margin-right: 10px;
     }
+  }
+}
+i.fas {
+  margin-right: 11px;
+  &.fa-arrow-left,
+  &.fa-arrow-right {
+    color: $gray-blue;
   }
 }
 </style>

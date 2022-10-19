@@ -21,7 +21,7 @@
             {{ task.date }}
           </td>
           <td>
-            {{ task.status }}
+            {{ getTaskStatus(task.status) }}
           </td>
           <td class="table-actions">
             <router-link
@@ -56,10 +56,15 @@ export default {
       });
     };
 
+    const getTaskStatus = (status) => {
+      return store.state.constants.task.status[status] || "";
+    };
+
     return {
       // access a state in computed function
       tasksList: computed(() => store.getters["tasks/getList"]),
       onBtnDeleteClick,
+      getTaskStatus,
     };
   },
 };

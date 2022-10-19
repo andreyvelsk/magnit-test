@@ -2,6 +2,7 @@ $primary:       #106EDC !default;
 $secondary:     #F6F6F6 !default;
 $light:         #F2F6F9 !default;
 $gray:          #82898F !default;
+$gray-blue:     #bbc0c5 !default;
 $dark:          #10171E !default;
 $black:         #000000 !default;
 $white:         #ffffff !default;
@@ -18,7 +19,7 @@ $theme-colors: map-merge(
   $theme-colors
 );
 
-$border-radius: .5rem;
+$border-radius: 6px;
 $border-color: #DFE3E7;
 
 $normal: 400;
