@@ -16,8 +16,13 @@
                 <i class="fas fa-pen"></i>
                 <i class="fas fa-trash"></i>
               </div>
-              <div class="comment-date">
-                {{ comment.date }}
+              <div class="comment-datetime">
+                <div class="comment-date">
+                  {{ formatDate(comment.date) }}
+                </div>
+                <div class="comment-time">
+                  {{ formatTime(comment.date) }}
+                </div>
               </div>
             </div>
           </div>
@@ -63,7 +68,7 @@ export default {
       store.commit("tasks/addComment", {
         comment: current.value.comment,
         id,
-        date: new Date(),
+        date: new Date().toString(),
       });
 
       store.commit("tasks/comments/loadCurrent", {
@@ -71,9 +76,30 @@ export default {
       });
     };
 
+    const formatStringToDate = (date) => {
+      const dateParsed = Date.parse(date);
+      return new Date(dateParsed);
+    };
+
+    const formatDate = (date) => {
+      const dateParsed = formatStringToDate(date);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      return dateParsed.toLocaleDateString("default", options);
+    };
+    const formatTime = (date) => {
+      const dateParsed = formatStringToDate(date);
+      return dateParsed.toLocaleTimeString("default");
+    };
+
     return {
       addComment,
       comments,
+      formatDate,
+      formatTime,
     };
   },
 };
@@ -119,9 +145,6 @@ export default {
     border-radius: $border-radius;
   }
 
-  &-body {
-    width: min-content;
-  }
   &-footer {
     display: flex;
     align-items: center;
@@ -130,6 +153,14 @@ export default {
     i {
       margin-right: 21px;
     }
+  }
+  &-datetime {
+    color: $gray;
+    display: flex;
+    justify-content: space-between;
+  }
+  &-date {
+    margin-right: 20px;
   }
 }
 </style>

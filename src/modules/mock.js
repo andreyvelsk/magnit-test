@@ -7,7 +7,7 @@ export const generateId = () => {
 const generateTask = (id, name) => ({
   id,
   name,
-  date: new Date(),
+  date: new Date().toISOString().split("T")[0],
   status: 0,
   description: "Задание такое-то",
   documents: [],

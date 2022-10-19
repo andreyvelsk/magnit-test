@@ -1,13 +1,11 @@
 <template>
-  <div class="wrapper">
-    <h1>Создание нового задания</h1>
+  <h1>Создание нового задания</h1>
 
-    <breadcrumbs-component />
+  <breadcrumbs-component />
 
-    <actions-component />
+  <actions-component />
 
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -40,9 +38,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.wrapper {
-  padding-top: 78px;
-}
-</style>

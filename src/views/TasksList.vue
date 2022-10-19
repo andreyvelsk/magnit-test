@@ -53,10 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  padding-top: 78px;
-  .tasks-table {
-    margin-top: 51px;
-  }
+.tasks-table {
+  margin-top: 51px;
 }
 </style>
