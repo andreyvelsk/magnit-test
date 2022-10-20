@@ -24,14 +24,16 @@
             {{ getTaskStatus(task.status) }}
           </td>
           <td class="table-actions">
-            <router-link
-              class="fas fa-pen text-dark"
-              :to="{ name: 'edit.index', params: { id: task.id } }"
-            ></router-link>
-            <i
-              class="fas fa-trash cursor-pointer"
-              @click="onBtnDeleteClick(task)"
-            ></i>
+            <div class="actions">
+              <router-link
+                class="fas fa-pen text-dark"
+                :to="{ name: 'edit.index', params: { id: task.id } }"
+              ></router-link>
+              <i
+                class="fas fa-trash cursor-pointer"
+                @click="onBtnDeleteClick(task)"
+              ></i>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -57,7 +59,7 @@ export default {
     };
 
     const getTaskStatus = (status) => {
-      return store.state.constants.task.status[status] || "";
+      return store.state.constants.task.status[status] || "Не указан";
     };
 
     return {

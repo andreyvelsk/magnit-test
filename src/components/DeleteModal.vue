@@ -22,7 +22,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/scss/main.scss";
 .modal {
   background-color: $white;
   border-radius: $border-radius;

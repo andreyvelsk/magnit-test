@@ -81,7 +81,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./src/scss/variables.scss";
 .comment {
   &:not(:last-child) {
     margin-bottom: 20px;
@@ -93,11 +92,17 @@ export default {
 
     border: 1px solid $border-color;
     border-radius: $border-radius;
+    max-width: 100%;
   }
   &.active {
     .comment-main {
       border-color: $primary;
     }
+  }
+
+  &-body {
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
 
   &-footer {

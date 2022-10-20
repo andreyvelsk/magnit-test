@@ -64,8 +64,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./src/scss/variables.scss";
-
 .breadcrumbs {
   margin-bottom: 30px;
   display: flex;

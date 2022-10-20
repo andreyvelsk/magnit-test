@@ -52,9 +52,14 @@ a {
           padding: 25px 33px;
           &.table-actions {
             text-align: end;
-            .fa-pen {
-                margin-right: 42px;
-              }
+            .actions {
+                display: flex;
+                align-items: center;
+                .fa-pen {
+                    margin-right: 42px;
+                }
+            }
+            
           }
           
         }

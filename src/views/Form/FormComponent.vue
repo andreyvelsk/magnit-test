@@ -1,5 +1,7 @@
 <template>
-  <h1>Создание нового задания</h1>
+  <h1>
+    {{ isEdit ? "Редактироварие задания" : "Создание нового задания" }}
+  </h1>
 
   <breadcrumbs-component />
 
@@ -9,7 +11,7 @@
 </template>
 
 <script>
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { computed } from "vue";
 import BreadcrumbsComponent from "./BreadcrumbsComponent.vue";
@@ -21,12 +23,19 @@ export default {
   },
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const store = useStore();
     const taskList = computed(() => store.getters["tasks/getList"]);
 
     //load existed task or create new one
     const taskId = route.params.id;
-    if (taskId && taskList.value[taskId]) {
+
+    //no id existed
+    if (taskId && !taskList.value[taskId]) {
+      router.push({ name: "list" });
+    }
+    const isEdit = taskId && taskList.value[taskId];
+    if (isEdit) {
       const task = JSON.parse(JSON.stringify(taskList.value[taskId]));
       store.commit("tasks/loadCurrent", task);
     } else {
@@ -35,6 +44,10 @@ export default {
         comments: [],
       });
     }
+
+    return {
+      isEdit,
+    };
   },
 };
 </script>

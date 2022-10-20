@@ -17,11 +17,13 @@
               {{ document.name }}
             </td>
             <td class="table-actions">
-              <i
-                class="fas fa-trash cursor-pointer"
-                @click="onBtnDeleteClick(document)"
-              >
-              </i>
+              <div class="actions">
+                <i
+                  class="fas fa-trash cursor-pointer"
+                  @click="onBtnDeleteClick(document)"
+                >
+                </i>
+              </div>
             </td>
           </tr>
         </tbody>

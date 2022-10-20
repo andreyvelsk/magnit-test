@@ -79,7 +79,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./src/scss/variables.scss";
 .actions {
   background-color: $secondary;
   padding: 20px 30px;

@@ -13,5 +13,13 @@ module.exports = {
         fix: true,
       }),
     ],
+    
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "@/scss/variables.scss";`,
+      }
+    }
+  }
 };
